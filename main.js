@@ -82,7 +82,6 @@ function everything(keyPressed, keyCode, event = null) {
                     if (isReal) {
 
                         let i = nextTileNumber - 5
-                        let count = 0
                         result.positions.forEach((value) => {
                             let audio = new Audio(`Alphabets/${($(`#tile${i}`).val()).toUpperCase()}.m4a`);
                             // setTimeout(() => {
@@ -91,27 +90,9 @@ function everything(keyPressed, keyCode, event = null) {
                             audio = new Audio(`Alphabets/${($(`#tile${i}`).val()).toUpperCase()}.m4a`);
                             audioFiles.push(`Alphabets/${($(`#tile${i}`).val()).toUpperCase()}.m4a`)
                             console.log(audioFiles)
-                            audio.volume = 0;
+                            audio.volume = 1;
                             audio.play()
                             console.log('ended')
-                            // audioFiles.forEach((value) => {
-                            // })
-                            audio.addEventListener("ended", () => {
-                                audioFiles.forEach((value) => {
-                                    setTimeout(() => {
-                                        let audio = new Audio(value);
-                                        console.log(`Alphabets/${($(`#tile${i}`).val()).toUpperCase()}.m4a`, value)
-                                    }, 2000)
-                                    audio.play()
-                                    sleep(100)
-                                    confirm("hi")
-                                })
-                                if (!(count >= 5)) {   
-                                        // sleep(10)
-                                    }
-                                    count += 1
-
-                            });
                             // setTimeout(() => {
                             // }, 2000)
                             // }, seconds)

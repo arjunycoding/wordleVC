@@ -44,10 +44,6 @@ async function isRealWord(wordToCheck) {
     let result = await response.json()
     return await result.title != "No Definitions Found"
 }
-async function playAudio(audioFile) {
-    let audio = new Audio(audioFile)
-    return await audio.play()
-}
 // this fucntions gets the word inputed based on what input you are on
 function extractWord(tileNumber) {
     if (tileNumber % 5 == 0) { //extract only when at the end tile for the word
