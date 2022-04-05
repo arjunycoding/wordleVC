@@ -83,23 +83,14 @@ function everything(keyPressed, keyCode, event = null) {
 
                         let i = nextTileNumber - 5
                         result.positions.forEach((value) => {
-                            let audio = new Audio(`Alphabets/${($(`#tile${i}`).val()).toUpperCase()}.m4a`);
-                            // setTimeout(() => {
                             $(`#tile${i}`).addClass(value)
                             $(`#tile${i}`).addClass("flip")
-                            audio = new Audio(`Alphabets/${($(`#tile${i}`).val()).toUpperCase()}.m4a`);
-                            audioFiles.push(`Alphabets/${($(`#tile${i}`).val()).toUpperCase()}.m4a`)
-                            console.log(audioFiles)
-                            audio.volume = 1;
-                            audio.play()
-                            console.log('ended')
-                            // setTimeout(() => {
-                            // }, 2000)
-                            // }, seconds)
                             $(`#tile${i}`).prop('disabled', true)
                             document.getElementById(`tile${i}`).readOnly = true
+                            
                             // Add Keyboard Colors
                             if (value == "right") {
+                                audioFiles.push(($(`#tile${i}`).val()).toUpperCase() + "right")
                                 text += "🟩"
                                 displayText += "🟩"
                                 $(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).addClass("right")
@@ -107,22 +98,25 @@ function everything(keyPressed, keyCode, event = null) {
                                     $(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).removeClass("exists")
                                 }
                             } else if (value == "exists") {
+                                audioFiles.push(($(`#tile${i}`).val()).toUpperCase() + "present")
                                 text += "🟨"
                                 displayText += "🟨"
                                 if ($(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).hasClass("right")) {
-
+                                    
                                 } else {
                                     $(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).addClass("exists")
                                 }
                             } else if (value == "wrong") {
+                                audioFiles.push(($(`#tile${i}`).val()).toUpperCase() + "absent")
                                 text += "⬛"
                                 displayText += "⬛"
                                 if (!$(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).hasClass("right")) {
                                     $(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).addClass("wrong")
                                 }
-                            }
+                        }
+                            play(0, audioFiles)
+
                             i++
-                            // seconds += 0.5
                         })
                         text += "\n"
                         displayText += "<br>"

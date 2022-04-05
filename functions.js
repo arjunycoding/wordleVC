@@ -117,3 +117,22 @@ function getKeyCode(letter) {
     }
     return letters[letter.toLowerCase()]
 }
+
+function play(index, wordArray, ismessage=false){
+    let letter = (wordArray[index].substr(0, 1)).trim()
+    console.log(letter)
+    if(ismessage){
+        audio = new Audio(`messages/${letter}.m4a`)
+    } else {
+        audio = new Audio(`Alphabets/${letter}.m4a`)
+    }
+    audio.play()
+    audio.onended = function(){
+        if(index < (wordArray.length - 1)){
+            index += 1
+            play(index, wordArray)
+        } else {
+            return
+        }
+    }
+}
