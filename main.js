@@ -54,11 +54,18 @@ function everything(keyPressed, keyCode, event = null) {
         if (result.result) { // when the guess is right
             let i = $("#nextTile").val() - 1
             let stopat = i - 5
-            for (; i > stopat; i--) {
+            audioFiles = []
+            for (; i >= stopat; i--) {
                 $(`#tile${i}`).addClass("right")
                 $(`#tile${i}`).addClass("speacialFlip")
+                console.log($(`#tile${i}`).val())
                 $(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).addClass("right")
+                audioFiles.push(`alphabets/${($(`#tile${i}`).val()).toUpperCase()}`)   
             }
+            audioFiles.reverse()
+            audioFiles.shift("messages/won")
+            console.log(audioFiles)
+            play(0, audioFiles)
             $("#showClue1").hide()
             $("#showClue2").hide()
             $("#showClue3").hide()
@@ -78,7 +85,8 @@ function everything(keyPressed, keyCode, event = null) {
             }, 3000)
         } else { // when the guess is wrong
             isRealWord(enteredWord)
-                .then((isReal) => {
+                .then((isReal) => { 
+                    audioFiles = []
                     if (isReal) {
 
                         let i = nextTileNumber - 5
@@ -87,10 +95,11 @@ function everything(keyPressed, keyCode, event = null) {
                             $(`#tile${i}`).addClass("flip")
                             $(`#tile${i}`).prop('disabled', true)
                             document.getElementById(`tile${i}`).readOnly = true
+                            audioFiles.push(`alphabets/${($(`#tile${i}`).val()).toUpperCase()}`)
                             
                             // Add Keyboard Colors
                             if (value == "right") {
-                                audioFiles.push(($(`#tile${i}`).val()).toUpperCase() + "right")
+                                audioFiles.push("messages/right")
                                 text += "🟩"
                                 displayText += "🟩"
                                 $(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).addClass("right")
@@ -98,7 +107,7 @@ function everything(keyPressed, keyCode, event = null) {
                                     $(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).removeClass("exists")
                                 }
                             } else if (value == "exists") {
-                                audioFiles.push(($(`#tile${i}`).val()).toUpperCase() + "present")
+                                audioFiles.push("messages/present")
                                 text += "🟨"
                                 displayText += "🟨"
                                 if ($(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).hasClass("right")) {
@@ -107,7 +116,7 @@ function everything(keyPressed, keyCode, event = null) {
                                     $(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).addClass("exists")
                                 }
                             } else if (value == "wrong") {
-                                audioFiles.push(($(`#tile${i}`).val()).toUpperCase() + "absent")
+                                audioFiles.push("messages/absent")
                                 text += "⬛"
                                 displayText += "⬛"
                                 if (!$(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).hasClass("right")) {
@@ -115,7 +124,6 @@ function everything(keyPressed, keyCode, event = null) {
                                 }
                         }
                             play(0, audioFiles)
-
                             i++
                         })
                         text += "\n"
@@ -124,17 +132,27 @@ function everything(keyPressed, keyCode, event = null) {
 
                         //proceed to the next row: 
                         let nextTile = "#tile" + nextTileNumber
+
                         $("#currentTile").val(nextTileNumber)
                         $(nextTile).focus()
 
 
                         if (nextTile == "#tile31") {
                             $(".alert-primary").fadeIn(1500).text("You did not get the word 😟. The word was " + word)
+                            audioFiles = []
                         }
                         pointCout -= 10
 
                         $("#ponitCount").html(pointCout)
                     } else {
+                        audioFiles = []
+                        let i = nextTileNumber - 5
+                        result.positions.forEach((value) => {
+                            audioFiles.push(`alphabets/${$(`#tile${i}`).val()}`)
+                            i++
+                        })
+                        audioFiles.push("messages/invalid")
+                        play(0, audioFiles)
                         $(`#tile${nextTileNumber}`).focus()
                         $(".alert-danger").fadeIn(1000).text("Not a word")
                         setTimeout(() => {
