@@ -10,6 +10,20 @@ function sleep(seconds) {
     while (currentTime + seconds >= new Date().getTime()) {
     }
 }
+// let files = []
+// files.push(`alphabets/A.m4a`)
+// console.log(`alphabets/A.m4a`)
+// files.push(`alphabets/A.m4a`)
+// console.log(`alphabets/A.m4a`)
+// files.push(`alphabets/A.m4a`)
+// console.log(`alphabets/A.m4a`)
+// files.push(`alphabets/A.m4a`)
+// console.log(`alphabets/A.m4a`)
+// files.push(`alphabets/A.m4a`)
+// console.log(`alphabets/A.m4a`)
+// // files.push("messages/sorry.m4a") 
+// play(0, ["elixir-soft-piano-passionate-melody_145bpm.wav", "elixir-soft-piano-passionate-melody_145bpm.wav"])
+// console.log(["elixir-soft-piano-passionate-melody_145bpm.wav", "elixir-soft-piano-passionate-melody_145bpm.wav"])
 let pointCout = 100
 let totalPoints = pointCout
 let randomIndex = Math.floor(Math.random() * words.length)
@@ -63,9 +77,10 @@ function everything(keyPressed, keyCode, event = null) {
                 audioFiles.push(`alphabets/${($(`#tile${i}`).val()).toUpperCase()}`)   
             }
             audioFiles.reverse()
-            audioFiles.shift("messages/won")
+            audioFiles.push("messages/won")
+            audioFiles.shift()
             console.log(audioFiles)
-            play(0, audioFiles)
+            play(0, audioFiles, true)
             $("#showClue1").hide()
             $("#showClue2").hide()
             $("#showClue3").hide()
@@ -138,20 +153,33 @@ function everything(keyPressed, keyCode, event = null) {
 
 
                         if (nextTile == "#tile31") {
-                            $(".alert-primary").fadeIn(1500).text("You did not get the word 😟. The word was " + word)
-                            audioFiles = []
+                            setTimeout(() => {
+                                $(".alert-primary").fadeIn(1500).text("You did not get the word 😟. The word was " + word)
+                                audioFiles = []
+                                let i = $("#nextTile").val() - 1
+                                let stopat = i - 4
+                                audioFiles = []
+                                for (; i >= stopat; i--) {
+                                    console.log($(`#tile${i}`).val())
+                                    audioFiles.push(`alphabets/${($(`#tile${i}`).val()).toUpperCase()}`)   
+                                }
+                                audioFiles.push("messages/sorry")
+                                audioFiles.reverse()
+                                play(0, audioFiles)
+                            }, 18000)
                         }
                         pointCout -= 10
 
                         $("#ponitCount").html(pointCout)
                     } else {
+                        let i = $("#nextTile").val() - 1
+                        let stopat = i - 4
                         audioFiles = []
-                        let i = nextTileNumber - 5
-                        result.positions.forEach((value) => {
-                            audioFiles.push(`alphabets/${$(`#tile${i}`).val()}`)
-                            i++
-                        })
                         audioFiles.push("messages/invalid")
+                        for (; i >= stopat; i--) {
+                            audioFiles.push(`alphabets/${($(`#tile${i}`).val()).toUpperCase()}`)   
+                        }
+                        audioFiles.reverse()
                         play(0, audioFiles)
                         $(`#tile${nextTileNumber}`).focus()
                         $(".alert-danger").fadeIn(1000).text("Not a word")

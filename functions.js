@@ -118,7 +118,7 @@ function getKeyCode(letter) {
     return letters[letter.toLowerCase()]
 }
 
-function play(index, wordArray){
+function play(index, wordArray, muteAfter=false){
     audio = new Audio(`${wordArray[index]}.m4a`)
     audio.play()
     audio.onended = function(){
@@ -126,6 +126,9 @@ function play(index, wordArray){
             index += 1
             play(index, wordArray)
         } else {
+            if(muteAfter){
+                audio.volume = 0
+            }
             return
         }
     }
