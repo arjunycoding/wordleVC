@@ -69,7 +69,7 @@ function everything(keyPressed, keyCode, event = null) {
                 $(`#tile${i}`).addClass("speacialFlip")
                 console.log($(`#tile${i}`).val())
                 $(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).addClass("right")
-                audioFiles.push(`alphabets/${($(`#tile${i}`).val()).toUpperCase()}`)   
+                audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)   
             }
             audioFiles.reverse()
             audioFiles.push("messages/won")
@@ -105,7 +105,7 @@ function everything(keyPressed, keyCode, event = null) {
                             $(`#tile${i}`).addClass("flip")
                             $(`#tile${i}`).prop('disabled', true)
                             document.getElementById(`tile${i}`).readOnly = true
-                            audioFiles.push(`alphabets/${($(`#tile${i}`).val()).toUpperCase()}`)
+                            audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)
                             
                             // Add Keyboard Colors
                             if (value == "right") {
@@ -156,7 +156,7 @@ function everything(keyPressed, keyCode, event = null) {
                                 audioFiles = []
                                 for (; i >= stopat; i--) {
                                     console.log($(`#tile${i}`).val())
-                                    audioFiles.push(`alphabets/${($(`#tile${i}`).val()).toUpperCase()}`)   
+                                    audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)   
                                 }
                                 audioFiles.push("messages/sorry")
                                 audioFiles.reverse()
@@ -172,7 +172,7 @@ function everything(keyPressed, keyCode, event = null) {
                         audioFiles = []
                         audioFiles.push("messages/invalid")
                         for (; i >= stopat; i--) {
-                            audioFiles.push(`alphabets/${($(`#tile${i}`).val()).toUpperCase()}`)   
+                            audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)   
                         }
                         audioFiles.reverse()
                         play(0, audioFiles)
