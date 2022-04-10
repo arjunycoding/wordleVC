@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Cuprum:wght@400;700&display=swap');
-body{
+@import url("https://fonts.googleapis.com/css2?family=Cuprum:wght@400;700&display=swap");
+body {
   padding: 10px;
-  margin:auto;
+  margin: auto;
 }
 .guess {
   margin: 5px;
@@ -14,8 +14,8 @@ body{
   border: 2px solid #808080;
   font-size: 25px;
 }
-.heading{
-  font-family: 'Cuprum';
+.heading {
+  font-family: "Cuprum";
   text-align: center;
   display: inline;
   margin: 45%;
@@ -34,19 +34,19 @@ input[type="text"][disabled] {
   background: inherit;
 }
 
-.right{
+.right {
   background-color: #538d4e !important;
   border: none;
   color: white;
 }
 
-.wrong{
+.wrong {
   background-color: #939598 !important;
   border: none;
   color: white;
 }
 
-.exists{
+.exists {
   background-color: #c9b458 !important;
   border: none;
   color: white;
@@ -58,33 +58,35 @@ input:focus {
   color: white;
 }
 
-.message{
+.message {
   max-width: 300px;
   width: fit-content;
   margin: auto;
 }
-  
-.letter{
-  border:none;
+
+.letter {
+  border: none;
   background-color: #c9c9c9;
   width: 45px;
   height: 45px;
   margin: 5px;
   border-radius: 5px;
 }
- 
-.enter, .delete{
+
+.enter,
+.delete {
   width: 75px;
-  border:none;
-  background-color: #c9c9c9;  height: 45px;
+  border: none;
+  background-color: #c9c9c9;
+  height: 45px;
   margin: 5px;
   border-radius: 5px;
 }
-.rowCenter{
+.rowCenter {
   margin-left: 20px;
 }
 
-.keyboard{
+.keyboard {
   text-align: center;
 }
 @media only screen and (max-width: 625px) {
@@ -92,35 +94,35 @@ input:focus {
     width: 7.75%;
     margin: 2px !important;
   }
-  .enter, .delete{
+  .enter,
+  .delete {
     width: 13%;
   }
-  body{
+  body {
     padding: 0px;
     padding-top: 10px;
   }
 }
 
-#textMessage{
+#textMessage {
   display: none;
 }
 
-#hiddenTile:focus, #hiddenTile{
-  border:none;
+#hiddenTile:focus,
+#hiddenTile {
+  border: none;
   background-color: inherit;
 }
 
-#form{
+#form {
   margin: auto;
   border-color: #818181;
 }
 
-#header{
+#header {
   border-bottom: 1px solid black;
   width: 100%;
-
 }
-
 
 .guess {
   overflow: hidden;
@@ -128,27 +130,31 @@ input:focus {
   transition-property: transform;
 }
 
-.flip{
+.flip {
   transform: rotateX(360deg);
 }
 
-.speacialFlip{
-  transform: rotate3d(360, 0, 360,  360deg);
+.speacialFlip {
+  transform: rotate3d(360, 0, 360, 360deg);
 }
-.headerIcon{
+.headerIcon {
   background-color: red;
 }
 
-.btn-success, .btn-success:hover, .btn-success:active, .btn-success:focus{
+.btn-success,
+.btn-success:hover,
+.btn-success:active,
+.btn-success:focus {
   background-color: white;
   border: none;
   position: absolute;
-  top:0px;
+  top: 0px;
   left: 0px;
   float: left;
-  box-shadow:0px 0px 0px 0px white;
+  box-shadow: 0px 0px 0px 0px white;
 }
 
-#clues, #singleClue{
+#clues,
+#singleClue {
   margin: auto;
 }
