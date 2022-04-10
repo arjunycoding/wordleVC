@@ -5,25 +5,19 @@ for (let i = 65; i <= 90; i++) { //all alphabets
 $('#modal').hide()
 $(".headerIcon").hide()
 $("#showAllClues").hide()
-function sleep(seconds) {
-    var currentTime = new Date().getTime();
-    while (currentTime + seconds >= new Date().getTime()) {
+let instuctions = new Audio("./instuctions.m4a")
+$(document).ready(function(){
+        if(localStorage.getItem("instuction") == null){
+            instuctions.play()
+            localStorage.setItem("instuction", 1)
+        }
+});
+$(document).keydown(function(event) {
+    if (event.keyCode == 32 && event.target.nodeName !== "INPUT") {
+    instuctions.pause()
+    return false;
     }
-}
-// let files = []
-// files.push(`alphabets/A.m4a`)
-// console.log(`alphabets/A.m4a`)
-// files.push(`alphabets/A.m4a`)
-// console.log(`alphabets/A.m4a`)
-// files.push(`alphabets/A.m4a`)
-// console.log(`alphabets/A.m4a`)
-// files.push(`alphabets/A.m4a`)
-// console.log(`alphabets/A.m4a`)
-// files.push(`alphabets/A.m4a`)
-// console.log(`alphabets/A.m4a`)
-// // files.push("messages/sorry.m4a") 
-// play(0, ["elixir-soft-piano-passionate-melody_145bpm.wav", "elixir-soft-piano-passionate-melody_145bpm.wav"])
-// console.log(["elixir-soft-piano-passionate-melody_145bpm.wav", "elixir-soft-piano-passionate-melody_145bpm.wav"])
+}); 
 let pointCout = 100
 let totalPoints = pointCout
 let randomIndex = Math.floor(Math.random() * words.length)
@@ -44,6 +38,7 @@ if (search_params.has('id') && words.length > search_params.get('id')) {
 }
 $("#tile1").focus()
 let word = words[randomIndex]
+console.log(word)
 let inputId = $(this).attr("")
 function everything(keyPressed, keyCode, event = null) {
     let currentTile = parseInt($("#currentTile").val())

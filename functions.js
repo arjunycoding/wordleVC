@@ -133,3 +133,9 @@ function play(index, wordArray, muteAfter=false){
         }
     }
 }
+
+function sleep(seconds) {
+    var currentTime = new Date().getTime();
+    while (currentTime + seconds >= new Date().getTime()) {
+    }
+}
