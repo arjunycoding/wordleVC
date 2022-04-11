@@ -6,18 +6,18 @@ $('#modal').hide()
 $(".headerIcon").hide()
 $("#showAllClues").hide()
 let instuctions = new Audio("./instuctions.m4a")
-$(document).ready(function(){
-        if(localStorage.getItem("instuction") == null){
-            instuctions.play()
-            localStorage.setItem("instuction", 1)
-        }
-});
-$(document).keydown(function(event) {
-    if (event.keyCode == 32 && event.target.nodeName !== "INPUT") {
-    instuctions.pause()
-    return false;
+$(document).ready(function () {
+    if (localStorage.getItem("instuction") == null) {
+        instuctions.play()
+        localStorage.setItem("instuction", 1)
     }
-}); 
+});
+$(document).keydown(function (event) {
+    if (event.keyCode == 32 && event.target.nodeName !== "INPUT") {
+        instuctions.pause()
+        return false;
+    }
+});
 let pointCout = 100
 let totalPoints = pointCout
 let randomIndex = Math.floor(Math.random() * words.length)
@@ -69,7 +69,7 @@ function everything(keyPressed, keyCode, event = null) {
                 $(`#tile${i}`).addClass("speacialFlip")
                 console.log($(`#tile${i}`).val())
                 $(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).addClass("right")
-                audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)   
+                audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)
             }
             audioFiles.reverse()
             audioFiles.push("messages/won")
@@ -95,7 +95,7 @@ function everything(keyPressed, keyCode, event = null) {
             }, 3000)
         } else { // when the guess is wrong
             isRealWord(enteredWord)
-                .then((isReal) => { 
+                .then((isReal) => {
                     audioFiles = []
                     if (isReal) {
 
@@ -106,7 +106,6 @@ function everything(keyPressed, keyCode, event = null) {
                             $(`#tile${i}`).prop('disabled', true)
                             document.getElementById(`tile${i}`).readOnly = true
                             audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)
-                            
                             // Add Keyboard Colors
                             if (value == "right") {
                                 audioFiles.push("messages/right")
@@ -121,7 +120,7 @@ function everything(keyPressed, keyCode, event = null) {
                                 text += "🟨"
                                 displayText += "🟨"
                                 if ($(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).hasClass("right")) {
-                                    
+
                                 } else {
                                     $(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).addClass("exists")
                                 }
@@ -132,10 +131,14 @@ function everything(keyPressed, keyCode, event = null) {
                                 if (!$(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).hasClass("right")) {
                                     $(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).addClass("wrong")
                                 }
-                        }
-                            play(0, audioFiles)
+                            }
+                            console.log(audioFiles)
+                            audioFiles.forEach((value) => {
+                                console.log(value)
+                            })
                             i++
                         })
+                        play(0, audioFile)
                         text += "\n"
                         displayText += "<br>"
                         $("#textMessage").val(text)
@@ -156,7 +159,7 @@ function everything(keyPressed, keyCode, event = null) {
                                 audioFiles = []
                                 for (; i >= stopat; i--) {
                                     console.log($(`#tile${i}`).val())
-                                    audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)   
+                                    audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)
                                 }
                                 audioFiles.push("messages/sorry")
                                 audioFiles.reverse()
@@ -172,7 +175,7 @@ function everything(keyPressed, keyCode, event = null) {
                         audioFiles = []
                         audioFiles.push("messages/invalid")
                         for (; i >= stopat; i--) {
-                            audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)   
+                            audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)
                         }
                         audioFiles.reverse()
                         play(0, audioFiles)
