@@ -6,7 +6,6 @@ let howToPlay = new Audio("./instructions.m4a")
 $('#modal').hide()
 $(".headerIcon").hide()
 $("#showAllClues").hide()
-new Audio("./welcome.m4a").play()
 $(document).keydown(function (event) {
     if (event.keyCode == 32 && event.target.nodeName !== "INPUT") {
         howToPlay.pause()
