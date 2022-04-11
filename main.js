@@ -2,20 +2,21 @@ let validKeys = [] //backspace & enter
 for (let i = 65; i <= 90; i++) { //all alphabets
     validKeys.push(i)
 }
+let howToPlay = new Audio("./instructions.m4a")
 $('#modal').hide()
 $(".headerIcon").hide()
 $("#showAllClues").hide()
-// let instuctions = new Audio("./instuctions.m4a")
-// $(document).ready(function () {
-if (localStorage.getItem("instuction") == null) {
-    $("#instuctions").attr('autoplay', 'true')
-    // localStorage.setItem("instuction", 1)
-}
-// });
+new Audio("./welcome.m4a").play()
 $(document).keydown(function (event) {
     if (event.keyCode == 32 && event.target.nodeName !== "INPUT") {
-        $("#instuctions").remove()
+        howToPlay.pause()
         $("#tile1").focus()
+        return false;
+    }
+});
+$(document).keydown(function (event) {
+    if (event.keyCode == 73 && event.target.nodeName !== "INPUT") {
+        howToPlay.play()
         return false;
     }
 });
