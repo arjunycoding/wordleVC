@@ -69,7 +69,7 @@ function everything(keyPressed, keyCode, event = null) {
                 $(`#tile${i}`).addClass("right")
                 $(`#tile${i}`).addClass("speacialFlip")
                 console.log($(`#tile${i}`).val())
-                $(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).addClass("right")
+                $(`.letter:contains(${($(`#tile${i}`).val())})`).addClass("right")
                 audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)
             }
             audioFiles.reverse()
