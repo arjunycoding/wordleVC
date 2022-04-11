@@ -5,17 +5,17 @@ for (let i = 65; i <= 90; i++) { //all alphabets
 $('#modal').hide()
 $(".headerIcon").hide()
 $("#showAllClues").hide()
-let instuctions = new Audio("./instuctions.m4a")
-$(document).ready(function () {
-    $("#hiddenBtn").click()
-    if (localStorage.getItem("instuction") == null) {
-        instuctions.play()
-        // localStorage.setItem("instuction", 1)
-    }
-});
+// let instuctions = new Audio("./instuctions.m4a")
+// $(document).ready(function () {
+if (localStorage.getItem("instuction") == null) {
+    $("#instuctions").attr('autoplay', 'true')
+    // localStorage.setItem("instuction", 1)
+}
+// });
 $(document).keydown(function (event) {
     if (event.keyCode == 32 && event.target.nodeName !== "INPUT") {
-        instuctions.pause()
+        $("#instuctions").remove()
+        $("#tile1").focus()
         return false;
     }
 });
@@ -37,7 +37,6 @@ if (search_params.has('id') && words.length > search_params.get('id')) {
     $("#form").hide()
     $("#tile1").focus()
 }
-$("#tile1").focus()
 let word = words[randomIndex]
 console.log(word)
 let inputId = $(this).attr("")
