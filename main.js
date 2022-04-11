@@ -7,9 +7,10 @@ $(".headerIcon").hide()
 $("#showAllClues").hide()
 let instuctions = new Audio("./instuctions.m4a")
 $(document).ready(function () {
+    $("#hiddenBtn").click()
     if (localStorage.getItem("instuction") == null) {
         instuctions.play()
-        localStorage.setItem("instuction", 1)
+        // localStorage.setItem("instuction", 1)
     }
 });
 $(document).keydown(function (event) {
@@ -138,7 +139,8 @@ function everything(keyPressed, keyCode, event = null) {
                             })
                             i++
                         })
-                        play(0, audioFile)
+                        console.log(audioFiles)
+                        play(0, audioFiles)
                         text += "\n"
                         displayText += "<br>"
                         $("#textMessage").val(text)

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,15 +22,11 @@
     <div id="header">
         <h1 class="heading">Wordle</h1>
     </div>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <img src="images/question.png" alt="question mark circle" width="30px">
-        </button>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <img src="images/question.png" alt="question mark circle" width="30px">
+    </button>
     <br>
-    <!-- <audio controls>
-        <source src="horse.ogg" type="audio/ogg">
-        <source src="Alphabets/A.m4a" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio> -->
+    <button id="hiddenBtn"></button>
     <div id="game">
         <div id="hiddenDiv">
             <input autocomplete="off" readonly type="text" id="hiddenTile" class="guess">
@@ -46,7 +43,7 @@
         <div class="alert alert-primary message" id="lose" role="alert">
         </div>
         <!-- Button trigger modal -->
-    
+
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -60,8 +57,9 @@
                         <b>General</b> <br> <br>
                         You have 6 tires to guess the word.<br>
                         You must enter a five letter word. Click enter to submit. <br> <br>
-                        <b>Word Evaluation</b> <br> 
-                        After you click enter the word will be analysed and the letters color will change depending on if and where they are placed<br>
+                        <b>Word Evaluation</b> <br>
+                        After you click enter the word will be analysed and the letters color will change depending on
+                        if and where they are placed<br>
                         If the letter lights up gray, the letter is not in the word <br>
                         If the letter lights up yellow, the letter is in the word but not in the right spot <br>
                         If the letter lights up green, the letter is in the word and in the right spot <br><br>
@@ -266,4 +264,3 @@
 </body>
 
 </html>
-
