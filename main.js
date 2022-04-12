@@ -155,17 +155,14 @@ function everything(keyPressed, keyCode, event = null) {
                             setTimeout(() => {
                                 $(".alert-primary").fadeIn(1500).text("You did not get the word 😟. The word was " + word)
                                 audioFiles = []
-                                let i = $("#nextTile").val() - 1
-                                let stopat = i - 4
-                                audioFiles = []
-                                for (; i >= stopat; i--) {
-                                    console.log($(`#tile${i}`).val())
-                                    audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)
-                                }
+                                let wordArray = word.split("");
                                 audioFiles.push("messages/sorry")
-                                audioFiles.reverse()
+                                wordArray.forEach((i) => {
+                                    console.log($(`#tile${i}`).val())
+                                    audioFiles.push(`letters/${i}`)
+                                })
                                 play(0, audioFiles)
-                            }, 18000)
+                            }, 16000)
                         }
                         pointCout -= 10
 
