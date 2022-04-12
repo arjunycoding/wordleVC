@@ -13,7 +13,6 @@ $(document).keydown(function (event) {
         return false;
     }
 });
-// $(document).on("click", () => {new Audio("welcome.m4a").play()})
 $(document).keydown(function (event) {
     if (event.keyCode == 73 && event.target.nodeName !== "INPUT") {
         howToPlay.play()
@@ -39,7 +38,6 @@ if (search_params.has('id') && words.length > search_params.get('id')) {
     $("#tile1").focus()
 }
 let word = words[randomIndex]
-console.log(word)
 let inputId = $(this).attr("")
 function everything(keyPressed, keyCode, event = null) {
     let currentTile = parseInt($("#currentTile").val())
