@@ -31,6 +31,7 @@ $(".message").hide()
 $("#currentTile").val("1")
 let url = new URL(window.location.href)
 let search_params = url.searchParams
+document.getElementById("my_audio").play()
 if (search_params.has('id') && words.length > search_params.get('id')) {
     randomIndex = search_params.get('id')
     $("#game").show()
