@@ -169,5 +169,5 @@ input:focus {
 }
 
 audio {
-  display: none;
+  /* display: none; */
 }
