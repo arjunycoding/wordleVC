@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Cuprum:wght@400;700&display=swap");
+
 body {
   padding: 10px;
   margin: auto;
 }
+
 .guess {
   margin: 5px;
   width: 50px;
@@ -14,12 +16,14 @@ body {
   border: 2px solid #808080;
   font-size: 25px;
 }
+
 .heading {
   font-family: "Cuprum";
   text-align: center;
   display: inline;
   margin: 45%;
 }
+
 #hiddenTile {
   height: 0px;
   width: 0px;
@@ -82,6 +86,7 @@ input:focus {
   margin: 5px;
   border-radius: 5px;
 }
+
 .rowCenter {
   margin-left: 20px;
 }
@@ -89,15 +94,18 @@ input:focus {
 .keyboard {
   text-align: center;
 }
+
 @media only screen and (max-width: 625px) {
   .letter {
     width: 7.75%;
     margin: 2px !important;
   }
+
   .enter,
   .delete {
     width: 13%;
   }
+
   body {
     padding: 0px;
     padding-top: 10px;
@@ -137,6 +145,7 @@ input:focus {
 .speacialFlip {
   transform: rotate3d(360, 0, 360, 360deg);
 }
+
 .headerIcon {
   background-color: red;
 }
@@ -157,4 +166,8 @@ input:focus {
 #clues,
 #singleClue {
   margin: auto;
+}
+
+audio {
+  display: none;
 }
