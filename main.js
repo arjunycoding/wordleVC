@@ -13,6 +13,7 @@ $(document).keydown(function (event) {
         return false;
     }
 });
+// $(document).on("click", () => {new Audio("welcome.m4a").play()})
 $(document).keydown(function (event) {
     if (event.keyCode == 73 && event.target.nodeName !== "INPUT") {
         howToPlay.play()
