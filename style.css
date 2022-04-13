@@ -168,6 +168,9 @@ input:focus {
   margin: auto;
 }
 
-audio {
-  /* display: none; */
+#play {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 5px solid red;
 }

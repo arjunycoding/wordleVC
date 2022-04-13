@@ -13,6 +13,12 @@ $(document).keydown(function (event) {
         return false;
     }
 });
+$("#play").on("mousemove", () => {
+    if (!mouseMoved) {
+        document.getElementById("my_audio").play()
+        $("#play").hide()
+    }
+})
 $(document).keydown(function (event) {
     if (event.keyCode == 73 && event.target.nodeName !== "INPUT") {
         howToPlay.play()
@@ -32,11 +38,6 @@ $("#currentTile").val("1")
 let url = new URL(window.location.href)
 let search_params = url.searchParams
 let mouseMoved = false
-$(document).on("mousemove", () => {
-    if(!mouseMoved){
-        document.getElementById("my_audio").play()
-    }
-})
 if (search_params.has('id') && words.length > search_params.get('id')) {
     randomIndex = search_params.get('id')
     $("#game").show()
