@@ -16,7 +16,6 @@ let howToPlay = new Audio("./instructions.m4a")
 log($("#howToPlayBtn").html())
 $("#howToPlayBtn").on("click", () => {
     howToPlay.play()
-    console.log("hello")
 })
 $("#closeHowToPlay").on("click", () => {
     howToPlay.pause()
