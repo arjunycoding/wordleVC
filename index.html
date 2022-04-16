@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,8 +20,7 @@
 </head>
 
 <body>
-    <div id="play">
-    </div>
+    
     <div id="header">
         <h1 class="heading">Wordle</h1>
     </div>
@@ -52,16 +52,16 @@
 
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="howToPlayBtn" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">How To Play</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button class="modal-title"id="howToPlayBtn">Click Me To Learn How To Play</button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeHowToPlayIcon"></button>
                     </div>
-                    <div class="modal-body">
+                    <div aria-live="assertive" class="modal-body" id="howToPlayBody">
                         <b>General</b> <br> <br>
-                        You have 6 tires to guess the word.<br>
+                        You have 6 trys to guess the word.<br>
                         You must enter a five letter word. Click enter to submit. <br> <br>
                         <b>Word Evaluation</b> <br>
                         After you click enter the word will be analysed and the letters color will change depending
@@ -71,18 +71,17 @@
                         If the letter lights up yellow, the letter is in the word but not in the right spot <br>
                         If the letter lights up green, the letter is in the word and in the right spot <br><br>
                         <b>Examples:</b><br>
-                        <img src="images/grayEx.png" alt="word with gray letter" width="300"><br>
+                        <img src="images/grayEx.png" alt="JUDGE with J gray" width="300"><br>
                         The letter J is not in the word <br><br>
-                        <img src="images/yellowEx.png" alt="word with yellow letter" width="300"><br>
+                        <img src="images/yellowEx.png" alt="ROADS with R yello" width="300"><br>
                         The letter R is in the word but in the worng spot<br><br>
-                        <img src="images/greenEx.png" alt="word with green letter" width="300"><br>
-                        The letter M is in the word and is in the right spot<br><br>
+                        <img src="images/greenEx.png" alt="MAPLE with E green" width="300"><br>
+                        The letter E is in the word and is in the right spot<br><br>
                         <b>Points</b> <br>
-                        The more tries you take the less points you earn.<br>
-                        The more clues you reveal the less points you earn.
+                        The more trys you take the less points you earn.
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeHowToPlay">Close</button>
                     </div>
                 </div>
             </div>
@@ -264,7 +263,6 @@
         </div>
     </div>
     </div>
-    <audio src="welcome.m4a" id="my_audio"></audio>
     <script src="words.js"></script>
     <script src="functions.js"></script>
     <script src="main.js"></script>

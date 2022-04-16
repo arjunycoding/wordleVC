@@ -1,30 +1,34 @@
+
+let log = (text) => {
+    console.log(text)
+}
 let validKeys = [] //backspace & enter
 for (let i = 65; i <= 90; i++) { //all alphabets
     validKeys.push(i)
 }
-let howToPlay = new Audio("./instructions.m4a")
 $('#modal').hide()
 $(".headerIcon").hide()
 $("#showAllClues").hide()
-$(document).keydown(function (event) {
-    if (event.keyCode == 32 && event.target.nodeName !== "INPUT") {
-        howToPlay.pause()
-        $("#tile1").focus()
-        return false;
-    }
+$(document).ready(() => {
+    $("#exampleModal").modal("show")
 });
-$("#play").on("mousemove", () => {
-    if (!mouseMoved) {
-        document.getElementById("my_audio").play()
-        $("#play").hide()
-    }
+let howToPlay = new Audio("./instructions.m4a")
+log($("#howToPlayBtn").html())
+$("#howToPlayBtn").on("click", () => {
+    howToPlay.play()
+    console.log("hello")
 })
-$(document).keydown(function (event) {
-    if (event.keyCode == 73 && event.target.nodeName !== "INPUT") {
-        howToPlay.play()
-        return false;
-    }
-});
+$("#closeHowToPlay").on("click", () => {
+    howToPlay.pause()
+    $("#tile1").focus()
+})
+$("#closeHowToPlayIcon").on("click", () => {
+    howToPlay.pause()
+    $("#tile1").focus()
+})
+howToPlay.onended = () => {
+    $("#tile1").focus()
+}
 let pointCout = 100
 let totalPoints = pointCout
 let randomIndex = Math.floor(Math.random() * words.length)
@@ -37,7 +41,6 @@ $(".message").hide()
 $("#currentTile").val("1")
 let url = new URL(window.location.href)
 let search_params = url.searchParams
-let mouseMoved = false
 if (search_params.has('id') && words.length > search_params.get('id')) {
     randomIndex = search_params.get('id')
     $("#game").show()
@@ -220,4 +223,3 @@ $(".letter").on("click", function (event) {
     let letter = $(this).val()
     everything(letter, getKeyCode(letter))
 })
-
