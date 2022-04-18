@@ -39,13 +39,13 @@
             <input autocomplete="off" readonly type="hidden" id="currentTile">
             <textarea id="textMessage" readonly name="story" rows="5" cols="33"></textarea>
         </div>
-        <div class="alert alert-danger message" id="error" role="alert">
+        <div class="alert alert-danger message" id="error" role="alert" aria-hidden="true">
 
         </div>
-        <div class="alert alert-success message" id="win" role="alert">
+        <div class="alert alert-success message" id="win" role="alert" aria-hidden="true">
 
         </div>
-        <div class="alert alert-primary message" id="lose" role="alert">
+        <div class="alert alert-primary message" id="lose" role="alert" aria-hidden="true">
         </div>
         <!-- Button trigger modal -->
 
@@ -201,7 +201,7 @@
 
                     </tr>
                 </table>
-                <div class="keyboard">
+                <div class="keyboard" aria-hidden="true">
                     <button class="letter key" value="Q">Q</button>
                     <button class="letter key" value="W">W</button>
                     <button class="letter key" value="E">E</button>

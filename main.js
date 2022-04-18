@@ -12,16 +12,12 @@ $(document).ready(() => {
     $("#exampleModal").modal("show")
 });
 $("#closeHowToPlay").on("click", () => {
-    howToPlay.pause()
+    $("#howToPlayBody").att("aria-hidden", "true")
     $("#tile1").focus()
 })
 $("#closeHowToPlayIcon").on("click", () => {
-    howToPlay.pause()
     $("#tile1").focus()
 })
-howToPlay.onended = () => {
-    $("#tile1").focus()
-}
 let pointCount = 100
 let totalPoints = pointCount
 let randomIndex = Math.floor(Math.random() * words.length)
