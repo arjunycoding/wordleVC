@@ -216,5 +216,3 @@ $(".letter").on("click", function (event) {
     let letter = $(this).val()
     everything(letter, getKeyCode(letter))
 })
-
-
