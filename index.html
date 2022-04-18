@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +19,7 @@
 </head>
 
 <body>
-    
+
     <div id="header">
         <h1 class="heading">Wordle</h1>
     </div>
@@ -56,15 +55,18 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button class="modal-title"id="howToPlayBtn">Click Me To Learn How To Play</button>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeHowToPlayIcon"></button>
+                        <h5 class="modal-title" id="howToPlayBtn">Press tab and then enter to hear the
+                            instructions press spacebar to stop. If you don't want to hear the instructions press tab
+                            twice and then click enter.</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            id="closeHowToPlayIcon"></button>
                     </div>
                     <div aria-live="assertive" class="modal-body" id="howToPlayBody">
                         <b>General</b> <br> <br>
-                        You have 6 trys to guess the word.<br>
+                        You have 6 try's to guess the word.<br>
                         You must enter a five letter word. Click enter to submit. <br> <br>
                         <b>Word Evaluation</b> <br>
-                        After you click enter the word will be analysed and the letters color will change depending
+                        After you click enter the word will be analyzed and the letters color will change depending
                         on
                         if and where they are placed<br>
                         If the letter lights up gray, the letter is not in the word <br>
@@ -73,15 +75,16 @@
                         <b>Examples:</b><br>
                         <img src="images/grayEx.png" alt="JUDGE with J gray" width="300"><br>
                         The letter J is not in the word <br><br>
-                        <img src="images/yellowEx.png" alt="ROADS with R yello" width="300"><br>
-                        The letter R is in the word but in the worng spot<br><br>
+                        <img src="images/yellowEx.png" alt="ROADS with R yellow" width="300"><br>
+                        The letter R is in the word but in the wrong spot<br><br>
                         <img src="images/greenEx.png" alt="MAPLE with E green" width="300"><br>
                         The letter E is in the word and is in the right spot<br><br>
                         <b>Points</b> <br>
-                        The more trys you take the less points you earn.
+                        The more try's you take the less points you earn.
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeHowToPlay">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            id="closeHowToPlay">Close</button>
                     </div>
                 </div>
             </div>

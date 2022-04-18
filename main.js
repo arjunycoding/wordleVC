@@ -1,4 +1,3 @@
-
 let log = (text) => {
     console.log(text)
 }
@@ -12,11 +11,6 @@ $("#showAllClues").hide()
 $(document).ready(() => {
     $("#exampleModal").modal("show")
 });
-let howToPlay = new Audio("./instructions.m4a")
-log($("#howToPlayBtn").html())
-$("#howToPlayBtn").on("click", () => {
-    howToPlay.play()
-})
 $("#closeHowToPlay").on("click", () => {
     howToPlay.pause()
     $("#tile1").focus()
@@ -28,8 +22,8 @@ $("#closeHowToPlayIcon").on("click", () => {
 howToPlay.onended = () => {
     $("#tile1").focus()
 }
-let pointCout = 100
-let totalPoints = pointCout
+let pointCount = 100
+let totalPoints = pointCount
 let randomIndex = Math.floor(Math.random() * words.length)
 let text = ""
 let displayText = ""
@@ -91,14 +85,14 @@ function everything(keyPressed, keyCode, event = null) {
             text += "🟩🟩🟩🟩🟩"
             displayText += "🟩🟩🟩🟩🟩"
             let lines = ((displayText.split("<br>")).length)
-            text = `${lines} Tries \n ${pointCout} Points\n` + text + `\nWant To Play The Same Wordle? Go To: https://arjunycoding.github.io/wordle/?id=${randomIndex}`
-            console.log(`${lines} Tires \nBefore \n${pointCout} Points\n More`)
+            text = `${lines} Tries \n ${pointCount} Points\n` + text + `\nWant To Play The Same Wordle? Go To: https://arjunycoding.github.io/wordle/?id=${randomIndex}`
+            console.log(`${lines} Tires \nBefore \n${pointCount} Points\n More`)
             $("#textMessage").val(text)
             setTimeout(() => {
                 $("input").attr("disabled", "disabled")
                 $('#modal').click()
                 $(".modal-body").html(
-                    `You Got It!<br> The word was ${word}<br> You earned ${pointCout}/${totalPoints} Points <br>Here is your attempt: <br> ${displayText}`
+                    `You Got It!<br> The word was ${word}<br> You earned ${pointCount}/${totalPoints} Points <br>Here is your attempt: <br> ${displayText}`
                 )
             }, 3000)
         } else { // when the guess is wrong
@@ -172,9 +166,9 @@ function everything(keyPressed, keyCode, event = null) {
                                 play(0, audioFiles)
                             }, 16000)
                         }
-                        pointCout -= 10
+                        pointCount -= 10
 
-                        $("#ponitCount").html(pointCout)
+                        $("#ponitCount").html(pointCount)
                     } else {
                         let i = $("#nextTile").val() - 1
                         let stopat = i - 4
