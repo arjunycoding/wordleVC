@@ -81,7 +81,7 @@ function everything(keyPressed, keyCode, event = null) {
             text += "🟩🟩🟩🟩🟩"
             displayText += "🟩🟩🟩🟩🟩"
             let lines = ((displayText.split("<br>")).length)
-            text = `${lines} Tries \n ${pointCount} Points\n` + text + `\nWant To Play The Same Wordle? Go To: https://arjunycoding.github.io/wordle/?id=${randomIndex}`
+            text = `${lines} Tries \n ${pointCount} Points\n` + text + `\nWant To Play The Same Wordle? Go To: https://arjunycoding.github.io/wordleVC/?id=${randomIndex}`
             console.log(`${lines} Tires \nBefore \n${pointCount} Points\n More`)
             $("#textMessage").val(text)
             setTimeout(() => {

@@ -118,15 +118,15 @@ function getKeyCode(letter) {
     return letters[letter.toLowerCase()]
 }
 
-function play(index, wordArray, muteAfter=false){
+function play(index, wordArray, muteAfter = false) {
     audio = new Audio(`${wordArray[index]}.m4a`)
     audio.play()
-    audio.onended = function(){
-        if(index < (wordArray.length - 1)){
+    audio.onended = function () {
+        if (index < (wordArray.length - 1)) {
             index += 1
             play(index, wordArray)
         } else {
-            if(muteAfter){
+            if (muteAfter) {
                 audio.volume = 0
             }
             return
@@ -140,3 +140,13 @@ function sleep(seconds) {
     }
 }
 
+
+
+function copyText(inputId, btn) {
+    var copyText = document.getElementById(inputId)
+    copyText.select()
+    copyText.setSelectionRange(0, 99999)
+    navigator.clipboard.writeText(copyText.value)
+    $(btn).text("Copied To Clipboard!")
+    setTimeout(() => { $(btn).text("Share") }, 2000)
+}
