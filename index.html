@@ -18,73 +18,44 @@
 
 </head>
 
-<body>
-
+<body id="body">
     <div id="header">
         <h1 class="heading">Wordle</h1>
     </div>
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <img src="images/question.png" alt="question mark circle" width="30px">
-    </button>
     <br>
-    <button id="hiddenBtn"></button>
-    <audio autoplay>
-        <source src="welcome.m4a" type="audio/m4a">
-    </audio>
-
     <div id="game">
         <div id="hiddenDiv">
-            <input autocomplete="off" readonly type="text" id="hiddenTile" class="guess">
-            <input autocomplete="off" readonly type="hidden" id="nextTile">
-            <input autocomplete="off" readonly type="hidden" id="currentTile">
-            <textarea id="textMessage" readonly name="story" rows="5" cols="33"></textarea>
+            <input autocomplete="off" readonly type="text" id="hiddenTile" class="guess" aria-hidden="true" aria-hidden="true">
+            <input autocomplete="off" readonly type="hidden" id="nextTile" aria-hidden="true">
+            <input autocomplete="off" readonly type="hidden" id="currentTile" aria-hidden="true">
+            <textarea id="textMessage" readonly name="story" rows="5" cols="33" ></textarea>
         </div>
         <div class="alert alert-danger message" id="error" role="alert" aria-hidden="true">
-
+            
         </div>
         <div class="alert alert-success message" id="win" role="alert" aria-hidden="true">
-
+            
         </div>
         <div class="alert alert-primary message" id="lose" role="alert" aria-hidden="true">
         </div>
         <!-- Button trigger modal -->
-
-
+        
+        
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="howToPlayBtn" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="howToPlayBtn">Press tab and then enter to hear the
-                            instructions press spacebar to stop. If you don't want to hear the instructions press tab
-                            twice and then click enter.</h5>
+                        <h5 class="modal-title" id="howToPlayBtn">Introduction</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                            id="closeHowToPlayIcon"></button>
+                        id="closeHowToPlayIcon"></button>
                     </div>
                     <div aria-live="assertive" class="modal-body" id="howToPlayBody">
-                        <b>General</b> <br> <br>
-                        You have 6 try's to guess the word.<br>
-                        You must enter a five letter word. Click enter to submit. <br> <br>
-                        <b>Word Evaluation</b> <br>
-                        After you click enter the word will be analyzed and the letters color will change depending
-                        on
-                        if and where they are placed<br>
-                        If the letter lights up gray, the letter is not in the word <br>
-                        If the letter lights up yellow, the letter is in the word but not in the right spot <br>
-                        If the letter lights up green, the letter is in the word and in the right spot <br><br>
-                        <b>Examples:</b><br>
-                        <img src="images/grayEx.png" alt="JUDGE with J gray" width="300"><br>
-                        The letter J is not in the word <br><br>
-                        <img src="images/yellowEx.png" alt="ROADS with R yellow" width="300"><br>
-                        The letter R is in the word but in the wrong spot<br><br>
-                        <img src="images/greenEx.png" alt="MAPLE with E green" width="300"><br>
-                        The letter E is in the word and is in the right spot<br><br>
-                        <b>Points</b> <br>
-                        The more try's you take the less points you earn.
+                        <p>Press I to hear the instructions if you already know how to play press S to start</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                            id="closeHowToPlay">Close</button>
+                        id="closeHowToPlay">Close</button>
                     </div>
                 </div>
             </div>
@@ -94,109 +65,109 @@
                 <table>
                     <tr>
                         <td><input readonly autocomplete="off" type="text" class="guess guess1" maxlength="1"
-                                id="tile1">
+                                id="tile1" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type="text" class="guess guess1" maxlength="1"
-                                id="tile2">
+                                id="tile2" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type="text" class="guess guess1" maxlength="1"
-                                id="tile3">
+                                id="tile3" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type="text" class="guess guess1" maxlength="1"
-                                id="tile4">
+                                id="tile4" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type="text" class="guess guess1" maxlength="1"
-                                id="tile5">
+                                id="tile5" aria-hidden="true">
                         </td>
 
                     </tr>
                     <tr>
                         <td><input readonly autocomplete="off" type="text" class="guess guess2" maxlength="1"
-                                id="tile6">
+                                id="tile6" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type="text" class="guess guess2" maxlength="1"
-                                id="tile7">
+                                id="tile7" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type="text" class="guess guess2" maxlength="1"
-                                id="tile8">
+                                id="tile8" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type="text" class="guess guess2" maxlength="1"
-                                id="tile9">
+                                id="tile9" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type="text" class="guess guess2" maxlength="1"
-                                id="tile10">
+                                id="tile10" aria-hidden="true">
                         </td>
 
                     </tr>
                     <tr>
                         <td><input readonly autocomplete="off" type="text" class="guess guess3" maxlength="1"
-                                id="tile11">
+                                id="tile11" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type="text" class="guess guess3" maxlength="1"
-                                id="tile12">
+                                id="tile12" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type="text" class="guess guess3" maxlength="1"
-                                id="tile13">
+                                id="tile13" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type="text" class="guess guess3" maxlength="1"
-                                id="tile14">
+                                id="tile14" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type="text" class="guess guess3" maxlength="1"
-                                id="tile15">
+                                id="tile15" aria-hidden="true">
                         </td>
 
                     </tr>
                     <tr>
                         <td><input readonly autocomplete="off" type="text" class="guess guess4" maxlength="1"
-                                id="tile16">
+                                id="tile16" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type="text" class="guess guess4" maxlength="1"
-                                id="tile17">
+                                id="tile17" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type="text" class="guess guess4" maxlength="1"
-                                id="tile18">
+                                id="tile18" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type="text" class="guess guess4" maxlength="1"
-                                id="tile19">
+                                id="tile19" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type="text" class="guess guess4" maxlength="1"
-                                id="tile20">
+                                id="tile20" aria-hidden="true">
                         </td>
 
                     </tr>
                     <tr>
                         <td><input readonly autocomplete="off" type="text" class="guess guess5" maxlength="1"
-                                id="tile21">
+                                id="tile21" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type=" text" class="guess guess5" maxlength="1"
-                                id="tile22">
+                                id="tile22" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type=" text" class="guess guess5" maxlength="1"
-                                id="tile23">
+                                id="tile23" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type=" text" class="guess guess5" maxlength="1"
-                                id="tile24">
+                                id="tile24" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type=" text" class="guess guess5" maxlength="1"
-                                id="tile25">
+                                id="tile25" aria-hidden="true">
                         </td>
 
                     </tr>
                     <tr>
                         <td><input readonly autocomplete="off" type=" text" class="guess guess6" maxlength="1"
-                                id="tile26">
+                                id="tile26" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type=" text" class="guess guess6" maxlength="1"
-                                id="tile27">
+                                id="tile27" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type=" text" class="guess guess6" maxlength="1"
-                                id="tile28">
+                                id="tile28" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type=" text" class="guess guess6" maxlength="1"
-                                id="tile29">
+                                id="tile29" aria-hidden="true">
                         </td>
                         <td><input readonly autocomplete="off" type=" text" class="guess guess6" maxlength="1"
-                                id="tile30">
+                                id="tile30" aria-hidden="true">
                         </td>
 
                     </tr>
