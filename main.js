@@ -11,13 +11,15 @@ $("#showAllClues").hide()
 $(document).ready(() => {
     $("#exampleModal").modal("show")
 });
-$("#closeHowToPlay").on("click", () => {
-    $("#howToPlayBody").att("aria-hidden", "true")
-    $("#tile1").focus()
-})
-$("#closeHowToPlayIcon").on("click", () => {
-    $("#tile1").focus()
-})
+$(document).keydown((event) => {
+    if (event.code == "KeyI") {
+        new Audio("instructions.m4a").play()
+        $("#tile1").focus()
+    } else if (event.code == "KeyS") {
+        $("#exampleModal").modal("hide")
+        $("#tile1").focus()
+    }
+});
 let pointCount = 100
 let totalPoints = pointCount
 let randomIndex = Math.floor(Math.random() * words.length)
