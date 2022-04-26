@@ -5,32 +5,21 @@ let validKeys = [] //backspace & enter
 for (let i = 65; i <= 90; i++) { //all alphabets
     validKeys.push(i)
 }
-let instructions = new Audio("instructions.m4a")
+let instructions = new Audio("instructions.m4a") 
 $('#modal').hide()
 $(".headerIcon").hide()
 $("#showAllClues").hide()
-console.log(instructions.ended)
-instructions.on("ended", () => {
-})
-
 $(document).keydown((event) => {
     console.log(event.code)
     console.log($(":focus"))
-    if (event.code == "KeyI") {
-        if (($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile") {
+    if(event.code == "KeyI"){
+        if(($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) ==  "tile"){
             console.log("hello")
-        } else if (event.code == "KeyI") {
+        } else {
             instructions.play()
-            while (!instructions.ended) {
-                if (instructions.ended) {
-                    $("#tile1").attr("aria-hidden", false)
-                    $("#exampleModal").modal("hide")
-                    $("#tile1").focus()
-                }
-            }
         }
-    } else if (event.code == "KeyS") {
-        if (($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile") {
+    } else if(event.code == "KeyS"){
+        if(($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) ==  "tile"){
             console.log("hello")
         } else {
             $("#tile1").attr("aria-hidden", false)
@@ -40,16 +29,14 @@ $(document).keydown((event) => {
     }
 }).ready(() => {
     $("#exampleModal").modal("show")
-});
-$(document).keydown((event) => {
-    if (event.code == "KeyI") {
-        new Audio("instructions.m4a").play()
-        $("#tile1").focus()
-    } else if (event.code == "KeyS") {
-        $("#exampleModal").modal("hide")
-        $("#tile1").focus()
-    }
-});
+})
+$("#closeHowToPlay").on("click", () => {
+    $("#howToPlayBody").att("aria-hidden", "true")
+    $("#tile1").focus()
+})
+$("#closeHowToPlayIcon").on("click", () => {
+    $("#tile1").focus()
+})
 let pointCount = 100
 let totalPoints = pointCount
 let randomIndex = Math.floor(Math.random() * words.length)
