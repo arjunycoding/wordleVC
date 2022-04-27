@@ -1,6 +1,3 @@
-let log = (text) => {
-    console.log(text)
-}
 let validKeys = [] //backspace & enter
 for (let i = 65; i <= 90; i++) { //all alphabets
     validKeys.push(i)
@@ -240,3 +237,4 @@ $(".letter").on("click", function (event) {
     let letter = $(this).val()
     everything(letter, getKeyCode(letter))
 })
+
