@@ -5,22 +5,17 @@ let validKeys = [] //backspace & enter
 for (let i = 65; i <= 90; i++) { //all alphabets
     validKeys.push(i)
 }
-let instructions = new Audio("instructions.m4a") 
+let instructions = new Audio("instructions.m4a")
 $('#modal').hide()
 $(".headerIcon").hide()
 $("#showAllClues").hide()
 $(document).keydown((event) => {
-    console.log(event.code)
-    console.log($(":focus"))
-    if(event.code == "KeyI"){
-        if(($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) ==  "tile"){
-            console.log("hello")
-        } else {
+    if (event.code == "KeyI") {
+        if (!($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile") {
             instructions.play()
         }
-    } else if(event.code == "KeyS"){
-        if(($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) ==  "tile"){
-            console.log("hello")
+    } else if (event.code == "KeyS") {
+        if (($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile") {
         } else {
             $("#tile1").attr("aria-hidden", false)
             $("#exampleModal").modal("hide")
@@ -31,12 +26,13 @@ $(document).keydown((event) => {
     $("#exampleModal").modal("show")
 })
 $("#closeHowToPlay").on("click", () => {
-    $("#howToPlayBody").att("aria-hidden", "true")
+    $("#howToPlayBody").attr("aria-hidden", "true")
     $("#tile1").focus()
 })
 $("#closeHowToPlayIcon").on("click", () => {
     $("#tile1").focus()
 })
+let prevFocus = 1
 let pointCount = 100
 let totalPoints = pointCount
 let randomIndex = Math.floor(Math.random() * words.length)
@@ -63,11 +59,23 @@ function everything(keyPressed, keyCode, event = null) {
     let nextTileNumber = parseInt($("#nextTile").val())
     if (validKeys.includes(keyCode) && inputId != "hiddenTile") {
         $(`#${inputId}`).val(keyPressed)
-        if (shouldMoveTile(inputId)) {
-            let nextTile = getNextTile(inputId)
-            console.log(getNextTile(inputId))
-            $(`#${nextTile}`).focus()
-            currentTile += 1
+        if (shouldMoveTile(inputId) && inputId != "hiddenTile") {
+            if (inputId == "hiddenTile") {
+                setTimeout(() => {
+                    $(`#tile${$("#currentTile").val()}`).val("h")
+
+                }, 15000)
+            } else {
+                if ($(":focus").val() == "") {
+
+                    // event.preventDefault()
+                    return false
+                } else {
+                    let nextTile = getNextTile(inputId)
+                    $(`#${nextTile}`).focus()
+                    currentTile += 1
+                }
+            }
         } else {
             $("#nextTile").val(extractTileNumber(inputId) + 1)
             $("#hiddenTile").focus()
@@ -85,14 +93,12 @@ function everything(keyPressed, keyCode, event = null) {
             for (; i >= stopat; i--) {
                 $(`#tile${i}`).addClass("right")
                 $(`#tile${i}`).addClass("speacialFlip")
-                console.log($(`#tile${i}`).val())
                 $(`.letter:contains(${($(`#tile${i}`).val())})`).addClass("right")
                 audioFiles.push(`letters/${($(`#tile${i}`).val())}`)
             }
             audioFiles.reverse()
             audioFiles.push("messages/won")
             audioFiles.shift()
-            console.log(audioFiles)
             play(0, audioFiles, true)
             $("#showClue1").hide()
             $("#showClue2").hide()
@@ -102,7 +108,6 @@ function everything(keyPressed, keyCode, event = null) {
             displayText += "🟩🟩🟩🟩🟩"
             let lines = ((displayText.split("<br>")).length)
             text = `${lines} Tries \n ${pointCount} Points\n` + text + `\nWant To Play The Same Wordle? Go To: https://arjunycoding.github.io/wordleVC/?id=${randomIndex}`
-            console.log(`${lines} Tires \nBefore \n${pointCount} Points\n More`)
             $("#textMessage").val(text)
             setTimeout(() => {
                 $("input").attr("disabled", "disabled")
@@ -150,13 +155,8 @@ function everything(keyPressed, keyCode, event = null) {
                                     $(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).addClass("wrong")
                                 }
                             }
-                            console.log(audioFiles)
-                            audioFiles.forEach((value) => {
-                                console.log(value)
-                            })
                             i++
                         })
-                        console.log(audioFiles)
                         play(0, audioFiles)
                         text += "\n"
                         displayText += "<br>"
@@ -178,7 +178,6 @@ function everything(keyPressed, keyCode, event = null) {
                                 let wordArray = word.split("");
                                 audioFiles.push("messages/sorry")
                                 wordArray.forEach((i) => {
-                                    console.log($(`#tile${i}`).val())
                                     audioFiles.push(`letters/${i}`)
                                 })
                                 play(0, audioFiles)
@@ -208,7 +207,6 @@ function everything(keyPressed, keyCode, event = null) {
     } else if (keyCode == 8) { // DELETE key pressed
         //     then we have to use nextTile to find while tiles to delete the values from
         if (inputId == "tile6" || inputId == "tile11" || inputId == "tile16" || inputId == "tile21" || inputId == "tile26") {
-
         } else if (inputId == "hiddenTile") {
             $(`#tile${nextTileNumber - 1}`).val("")
             $(`#tile${nextTileNumber - 1}`).focus()
@@ -227,7 +225,15 @@ function everything(keyPressed, keyCode, event = null) {
     }
 }
 $(".guess").keydown(function (event) {
-    everything(event.key, event.keyCode, event)
+    if ($(":focus").attr("id") == "hiddenTile" && event.keyCode != 13) {
+        event.preventDefault()
+        setTimeout(() => {
+            $(`#tile${prevFocus}`).focus()
+        }, 15000);
+    } else {
+        everything(event.key, event.keyCode, event)
+        prevFocus++
+    }
 })
 
 $(".letter").on("click", function (event) {
