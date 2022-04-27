@@ -222,7 +222,7 @@ function everything(keyPressed, keyCode, event = null) {
     }
 }
 $(".guess").keydown(function (event) {
-    if ($(":focus").attr("id") == "hiddenTile" && event.keyCode != 13) {
+    if ($(":focus").attr("id") == "hiddenTile" && event.keyCode != 13 && event.keyCode != 8) {
         event.preventDefault()
         setTimeout(() => {
             $(`#tile${prevFocus}`).focus()
