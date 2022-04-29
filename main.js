@@ -9,7 +9,7 @@ $("#showAllClues").hide()
 $(document).keydown((event) => {
     if (event.code == "KeyI" && !($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile") {
         instructions.play()
-    } else if (event.code == "KeyS" && !($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile") {
+    } else if (event.code == "KeyS" && !($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile" && $(":focus").attr("id") == "hiddenTile") {
         if (($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile") {
         } else {
             $("#tile1").attr("aria-hidden", false)
