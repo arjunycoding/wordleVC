@@ -7,11 +7,9 @@ $('#modal').hide()
 $(".headerIcon").hide()
 $("#showAllClues").hide()
 $(document).keydown((event) => {
-    if (event.code == "KeyI") {
-        if (!($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile") {
-            instructions.play()
-        }
-    } else if (event.code == "KeyS") {
+    if (event.code == "KeyI" && !($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile") {
+        instructions.play()
+    } else if (event.code == "KeyS" && !($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile") {
         if (($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile") {
         } else {
             $("#tile1").attr("aria-hidden", false)
