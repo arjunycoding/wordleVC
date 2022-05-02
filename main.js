@@ -7,10 +7,13 @@ $('#modal').hide()
 $(".headerIcon").hide()
 $("#showAllClues").hide()
 $(document).keydown((event) => {
-    if (event.code == "KeyI" && !($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile") {
-        instructions.play()
-    } else if (event.code == "KeyS" && !($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile" && $(":focus").attr("id") == "hiddenTile") {
+    if (event.code == "KeyI") {
+        if (!(($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile")) {
+            instructions.play()
+        }
+    } else if (event.code == "KeyS") {
         if (($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile") {
+
         } else {
             $("#tile1").attr("aria-hidden", false)
             $("#exampleModal").modal("hide")
@@ -21,13 +24,12 @@ $(document).keydown((event) => {
     $("#exampleModal").modal("show")
 })
 $("#closeHowToPlay").on("click", () => {
-    $("#howToPlayBody").attr("aria-hidden", "true")
+    $("#howToPlayBody").att("aria-hidden", "true")
     $("#tile1").focus()
 })
 $("#closeHowToPlayIcon").on("click", () => {
     $("#tile1").focus()
 })
-let prevFocus = 1
 let pointCount = 100
 let totalPoints = pointCount
 let randomIndex = Math.floor(Math.random() * words.length)
@@ -52,25 +54,16 @@ function everything(keyPressed, keyCode, event = null) {
     let currentTile = parseInt($("#currentTile").val())
     let inputId = currentTile < 1 ? "hiddenTile" : "tile" + currentTile
     let nextTileNumber = parseInt($("#nextTile").val())
-    if (validKeys.includes(keyCode) && inputId != "hiddenTile") {
+    console.log($(":focus").attr("id"))
+    if ($(":focus").attr("id") == "hiddenTile") {
+        console.log("hide")
+    } else if (validKeys.includes(keyCode) && inputId != "hiddenTile") {
         $(`#${inputId}`).val(keyPressed)
-        if (shouldMoveTile(inputId) && inputId != "hiddenTile") {
-            if (inputId == "hiddenTile") {
-                setTimeout(() => {
-                    $(`#tile${$("#currentTile").val()}`).val("h")
+        if (shouldMoveTile(inputId)) {
+            let nextTile = getNextTile(inputId)
 
-                }, 15000)
-            } else {
-                if ($(":focus").val() == "") {
-
-                    // event.preventDefault()
-                    return false
-                } else {
-                    let nextTile = getNextTile(inputId)
-                    $(`#${nextTile}`).focus()
-                    currentTile += 1
-                }
-            }
+            $(`#${nextTile}`).focus()
+            currentTile += 1
         } else {
             $("#nextTile").val(extractTileNumber(inputId) + 1)
             $("#hiddenTile").focus()
@@ -88,12 +81,14 @@ function everything(keyPressed, keyCode, event = null) {
             for (; i >= stopat; i--) {
                 $(`#tile${i}`).addClass("right")
                 $(`#tile${i}`).addClass("speacialFlip")
+
                 $(`.letter:contains(${($(`#tile${i}`).val())})`).addClass("right")
                 audioFiles.push(`letters/${($(`#tile${i}`).val())}`)
             }
             audioFiles.reverse()
             audioFiles.push("messages/won")
             audioFiles.shift()
+
             play(0, audioFiles, true)
             $("#showClue1").hide()
             $("#showClue2").hide()
@@ -103,6 +98,7 @@ function everything(keyPressed, keyCode, event = null) {
             displayText += "🟩🟩🟩🟩🟩"
             let lines = ((displayText.split("<br>")).length)
             text = `${lines} Tries \n ${pointCount} Points\n` + text + `\nWant To Play The Same Wordle? Go To: https://arjunycoding.github.io/wordleVC/?id=${randomIndex}`
+
             $("#textMessage").val(text)
             setTimeout(() => {
                 $("input").attr("disabled", "disabled")
@@ -150,8 +146,13 @@ function everything(keyPressed, keyCode, event = null) {
                                     $(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).addClass("wrong")
                                 }
                             }
+
+                            audioFiles.forEach((value) => {
+
+                            })
                             i++
                         })
+
                         play(0, audioFiles)
                         text += "\n"
                         displayText += "<br>"
@@ -173,6 +174,7 @@ function everything(keyPressed, keyCode, event = null) {
                                 let wordArray = word.split("");
                                 audioFiles.push("messages/sorry")
                                 wordArray.forEach((i) => {
+
                                     audioFiles.push(`letters/${i}`)
                                 })
                                 play(0, audioFiles)
@@ -202,6 +204,7 @@ function everything(keyPressed, keyCode, event = null) {
     } else if (keyCode == 8) { // DELETE key pressed
         //     then we have to use nextTile to find while tiles to delete the values from
         if (inputId == "tile6" || inputId == "tile11" || inputId == "tile16" || inputId == "tile21" || inputId == "tile26") {
+
         } else if (inputId == "hiddenTile") {
             $(`#tile${nextTileNumber - 1}`).val("")
             $(`#tile${nextTileNumber - 1}`).focus()
@@ -220,19 +223,15 @@ function everything(keyPressed, keyCode, event = null) {
     }
 }
 $(".guess").keydown(function (event) {
-    if ($(":focus").attr("id") == "hiddenTile" && event.keyCode != 13 && event.keyCode != 8) {
+    everything(event.key, event.keyCode, event)
+    if ($(":focus").attr("id") == "hiddenTile") {
         event.preventDefault()
-        setTimeout(() => {
-            $(`#tile${prevFocus}`).focus()
-        }, 15000);
-    } else {
-        everything(event.key, event.keyCode, event)
-        prevFocus++
+        console.log("hide")
     }
+    console.log($(":focus").attr("id"))
 })
 
 $(".letter").on("click", function (event) {
     let letter = $(this).val()
     everything(letter, getKeyCode(letter))
 })
-
