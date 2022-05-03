@@ -7,14 +7,16 @@ $('#modal').hide()
 $(".headerIcon").hide()
 $("#showAllClues").hide()
 $(document).keydown((event) => {
-    if (event.code == "KeyI") {
+    if (inputId == undefined && $(":focus").attr("id") == "hiddenTile") {
+        console.log("hi")
+        $("#hiddenTile").focus()
+    } else if (event.code == "KeyI") {
         if (!(($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile")) {
             instructions.play()
         }
     } else if (event.code == "KeyS") {
-        if (($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile") {
-
-        } else {
+        if (!(($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile")) {
+            console.log($(":focus").attr("id"), inputId)
             $("#tile1").attr("aria-hidden", false)
             $("#exampleModal").modal("hide")
             $("#tile1").focus()
@@ -54,10 +56,7 @@ function everything(keyPressed, keyCode, event = null) {
     let currentTile = parseInt($("#currentTile").val())
     let inputId = currentTile < 1 ? "hiddenTile" : "tile" + currentTile
     let nextTileNumber = parseInt($("#nextTile").val())
-    console.log($(":focus").attr("id"))
-    if ($(":focus").attr("id") == "hiddenTile") {
-        console.log("hide")
-    } else if (validKeys.includes(keyCode) && inputId != "hiddenTile") {
+    if (validKeys.includes(keyCode) && inputId != "hiddenTile") {
         $(`#${inputId}`).val(keyPressed)
         if (shouldMoveTile(inputId)) {
             let nextTile = getNextTile(inputId)
@@ -222,13 +221,20 @@ function everything(keyPressed, keyCode, event = null) {
         }
     }
 }
+function hello(event) {
+    event.preventDefault()
+}
 $(".guess").keydown(function (event) {
-    everything(event.key, event.keyCode, event)
-    if ($(":focus").attr("id") == "hiddenTile") {
-        event.preventDefault()
-        console.log("hide")
+    if (($(":focus").attr("id") == "hiddenTile") && event.keyCode != 13 && event.keyCode != 8) {
+        console.log(event.keyCode)
+    } else if (event.keyCode == 13) {
+        everything(event.key, event.keyCode, event)
+    } else if (event.keyCode == 8) {
+        everything(event.key, event.keyCode, event)
+    } else {
+        everything(event.key, event.keyCode, event)
+        hello(event)
     }
-    console.log($(":focus").attr("id"))
 })
 
 $(".letter").on("click", function (event) {
