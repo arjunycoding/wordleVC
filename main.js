@@ -26,7 +26,7 @@ $(document).keydown((event) => {
     $("#exampleModal").modal("show")
 })
 $("#closeHowToPlay").on("click", () => {
-    $("#howToPlayBody").att("aria-hidden", "true")
+    $("#howToPlayBody").attr("aria-hidden", "true")
     $("#tile1").focus()
 })
 $("#closeHowToPlayIcon").on("click", () => {
