@@ -11,7 +11,8 @@ $(document).keydown((event) => {
         console.log("hi")
         $("#hiddenTile").focus()
     } else if (event.code == "KeyI") {
-        if (!(($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile")) {
+        if (!((($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 2]) == "tile") || (($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 2]) == "til"))) {
+            console.log(($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 2]), $(":focus").attr("id"), true || false)
             instructions.play()
         }
     } else if (event.code == "KeyS") {
