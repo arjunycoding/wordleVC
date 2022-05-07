@@ -77,14 +77,19 @@ function everything(keyPressed, keyCode, event = null) {
             audioFiles = []
             for (; i >= stopat; i--) {
                 $(`#tile${i}`).addClass("right")
-                $(`#tile${i}`).addClass("speacialFlip")
+                $(`#tile${i}`).addClass("specialFlip")
 
                 $(`.letter:contains(${($(`#tile${i}`).val())})`).addClass("right")
-                audioFiles.push(`letters/${($(`#tile${i}`).val())}`)
+                let curLetter = $(`#tile${i}`).val()
+                if (curLetter) {
+                    console.log('pushing file: ', i, curLetter)
+                    audioFiles.push(`letters/${($(`#tile${i}`).val())}`)
+                }
+
             }
             audioFiles.reverse()
             audioFiles.push("messages/won")
-            audioFiles.shift()
+            console.log(JSON.stringify(audioFiles))
 
             play(0, audioFiles, true)
             $("#showClue1").hide()
