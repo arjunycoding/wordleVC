@@ -10,10 +10,17 @@ $('#modal').hide()
 $(".headerIcon").hide()
 $("#showAllClues").hide()
 $(document).keydown((event) => {
-    console.log(event.code)
-    if(event.code == "KeyI"){
-        if($(":focus").attr("class") ==  "tile"){
-            console.log(hello)
+    if (inputId == undefined && $(":focus").attr("id") == "hiddenTile") {
+        $("#hiddenTile").focus()
+    } else if (event.code == "KeyI") {
+        if (!((($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 2]) == "tile") || (($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 2]) == "til"))) {
+            instructions.play()
+        }
+    } else if (event.code == "KeyS") {
+        if (!(($(":focus").attr("id")).substring([0], [($(":focus").attr("id")).length - 1]) == "tile")) {
+            $("#tile1").attr("aria-hidden", false)
+            $("#exampleModal").modal("hide")
+            $("#tile1").focus()
         }
         instructions.play()
     } else if(event.code == "KeyS"){
@@ -77,22 +84,26 @@ function everything(keyPressed, keyCode, event = null) {
             audioFiles = []
             for (; i >= stopat; i--) {
                 $(`#tile${i}`).addClass("right")
-                $(`#tile${i}`).addClass("speacialFlip")
-                console.log($(`#tile${i}`).val())
+                $(`#tile${i}`).addClass("specialFlip")
+
                 $(`.letter:contains(${($(`#tile${i}`).val())})`).addClass("right")
-                audioFiles.push(`letters/${($(`#tile${i}`).val())}`)
+                let curLetter = $(`#tile${i}`).val()
+                if (curLetter) {
+                    console.log('pushing file: ', i, curLetter)
+                    audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)
+                }
+
             }
             audioFiles.reverse()
             audioFiles.push("messages/won")
-            audioFiles.shift()
-            console.log(audioFiles)
+            console.log(JSON.stringify(audioFiles))
+
             play(0, audioFiles, true)
             pop()
             text += "🟩🟩🟩🟩🟩"
             displayText += "🟩🟩🟩🟩🟩"
             let lines = ((displayText.split("<br>")).length)
             text = `${lines} Tries \n ${pointCount} Points\n` + text + `\nWant To Play The Same Wordle? Go To: https://arjunycoding.github.io/wordleVC/?id=${randomIndex}`
-            console.log(`${lines} Tires \nBefore \n${pointCount} Points\n More`)
             $("#textMessage").val(text)
             setTimeout(() => {
                 $("input").attr("disabled", "disabled")
@@ -140,13 +151,13 @@ function everything(keyPressed, keyCode, event = null) {
                                     $(`.letter:contains(${($(`#tile${i}`).val()).toUpperCase()})`).addClass("wrong")
                                 }
                             }
-                            console.log(audioFiles)
+
                             audioFiles.forEach((value) => {
-                                console.log(value)
+
                             })
                             i++
                         })
-                        console.log(audioFiles)
+
                         play(0, audioFiles)
                         text += "\n"
                         displayText += "<br>"
@@ -168,7 +179,6 @@ function everything(keyPressed, keyCode, event = null) {
                                 let wordArray = word.split("");
                                 audioFiles.push("messages/sorry")
                                 wordArray.forEach((i) => {
-                                    console.log($(`#tile${i}`).val())
                                     audioFiles.push(`letters/${i}`)
                                 })
                                 play(0, audioFiles)
@@ -216,8 +226,19 @@ function everything(keyPressed, keyCode, event = null) {
         }
     }
 }
+function hello(event) {
+    event.preventDefault()
+}
 $(".guess").keydown(function (event) {
-    everything(event.key, event.keyCode, event)
+    if (($(":focus").attr("id") == "hiddenTile") && event.keyCode != 13 && event.keyCode != 8) {
+    } else if (event.keyCode == 13) {
+        everything(event.key, event.keyCode, event)
+    } else if (event.keyCode == 8) {
+        everything(event.key, event.keyCode, event)
+    } else {
+        everything(event.key, event.keyCode, event)
+        hello(event)
+    }
 })
 
 $(".letter").on("click", function (event) {
