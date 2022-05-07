@@ -142,7 +142,7 @@ input:focus {
   transform: rotateX(360deg);
 }
 
-.specialFlip {
+.speacialFlip {
   transform: rotate3d(360, 0, 360, 360deg);
 }
 
