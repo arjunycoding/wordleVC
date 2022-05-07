@@ -83,7 +83,7 @@ function everything(keyPressed, keyCode, event = null) {
                 let curLetter = $(`#tile${i}`).val()
                 if (curLetter) {
                     console.log('pushing file: ', i, curLetter)
-                    audioFiles.push(`letters/${($(`#tile${i}`).val())}`)
+                    audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)
                 }
 
             }
