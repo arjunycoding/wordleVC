@@ -82,15 +82,12 @@ function everything(keyPressed, keyCode, event = null) {
                 $(`.letter:contains(${($(`#tile${i}`).val())})`).addClass("right")
                 let curLetter = $(`#tile${i}`).val()
                 if (curLetter) {
-                    console.log('pushing file: ', i, curLetter)
                     audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)
                 }
 
             }
             audioFiles.reverse()
             audioFiles.push("messages/won")
-            console.log(JSON.stringify(audioFiles))
-
             play(0, audioFiles, true)
             $("#showClue1").hide()
             $("#showClue2").hide()
