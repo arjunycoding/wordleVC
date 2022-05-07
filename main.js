@@ -1,11 +1,8 @@
-let log = (text) => {
-    console.log(text)
-}
 let validKeys = [] //backspace & enter
 for (let i = 65; i <= 90; i++) { //all alphabets
     validKeys.push(i)
 }
-let instructions = new Audio("instructions.m4a") 
+let instructions = new Audio("instructions.m4a")
 $('#modal').hide()
 $(".headerIcon").hide()
 $("#showAllClues").hide()
@@ -22,17 +19,12 @@ $(document).keydown((event) => {
             $("#exampleModal").modal("hide")
             $("#tile1").focus()
         }
-        instructions.play()
-    } else if(event.code == "KeyS"){
-        $("#exampleModal").modal("hide")
-        $("#tile1").focus()
-        $("#tile1").attr("aria-hidden", false)
     }
 }).ready(() => {
     $("#exampleModal").modal("show")
 })
 $("#closeHowToPlay").on("click", () => {
-    $("#howToPlayBody").att("aria-hidden", "true")
+    $("#howToPlayBody").attr("aria-hidden", "true")
     $("#tile1").focus()
 })
 $("#closeHowToPlayIcon").on("click", () => {
@@ -66,6 +58,7 @@ function everything(keyPressed, keyCode, event = null) {
         $(`#${inputId}`).val(keyPressed)
         if (shouldMoveTile(inputId)) {
             let nextTile = getNextTile(inputId)
+
             $(`#${nextTile}`).focus()
             currentTile += 1
         } else {
@@ -89,21 +82,22 @@ function everything(keyPressed, keyCode, event = null) {
                 $(`.letter:contains(${($(`#tile${i}`).val())})`).addClass("right")
                 let curLetter = $(`#tile${i}`).val()
                 if (curLetter) {
-                    console.log('pushing file: ', i, curLetter)
                     audioFiles.push(`letters/${($(`#tile${i}`).val()).toUpperCase()}`)
                 }
 
             }
             audioFiles.reverse()
             audioFiles.push("messages/won")
-            console.log(JSON.stringify(audioFiles))
-
             play(0, audioFiles, true)
+            $("#showClue1").hide()
+            $("#showClue2").hide()
+            $("#showClue3").hide()
             pop()
             text += "🟩🟩🟩🟩🟩"
             displayText += "🟩🟩🟩🟩🟩"
             let lines = ((displayText.split("<br>")).length)
             text = `${lines} Tries \n ${pointCount} Points\n` + text + `\nWant To Play The Same Wordle? Go To: https://arjunycoding.github.io/wordleVC/?id=${randomIndex}`
+
             $("#textMessage").val(text)
             setTimeout(() => {
                 $("input").attr("disabled", "disabled")
@@ -179,7 +173,7 @@ function everything(keyPressed, keyCode, event = null) {
                                 let wordArray = word.split("");
                                 audioFiles.push("messages/sorry")
                                 wordArray.forEach((i) => {
-                                    audioFiles.push(`letters/${i}`)
+                                    audioFiles.push(`letters/${i}.m4a`)
                                 })
                                 play(0, audioFiles)
                             }, 16000)
@@ -211,7 +205,7 @@ function everything(keyPressed, keyCode, event = null) {
 
         } else if (inputId == "hiddenTile") {
             $(`#tile${nextTileNumber - 1}`).val("")
-            // $(`#tile${nextTileNumber - 1}`).focus()
+            $(`#tile${nextTileNumber - 1}`).focus()
             $("#currentTile").val((nextTileNumber - 1))
         } else {
             $(`#tile${currentTile}`).val("")
