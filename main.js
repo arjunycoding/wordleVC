@@ -5,7 +5,6 @@ for (let i = 65; i <= 90; i++) { //all alphabets
 let instructions = new Audio("instructions.m4a")
 $('#modal').hide()
 $(".headerIcon").hide()
-$("#showAllClues").hide()
 $(document).keydown((event) => {
     if (inputId == undefined && $(":focus").attr("id") == "hiddenTile") {
         $("#hiddenTile").focus()
@@ -89,9 +88,6 @@ function everything(keyPressed, keyCode, event = null) {
             audioFiles.reverse()
             audioFiles.push("messages/won")
             play(0, audioFiles, true)
-            $("#showClue1").hide()
-            $("#showClue2").hide()
-            $("#showClue3").hide()
             pop()
             text += "🟩🟩🟩🟩🟩"
             displayText += "🟩🟩🟩🟩🟩"
