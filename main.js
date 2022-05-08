@@ -72,7 +72,7 @@ function everything(keyPressed, keyCode, event = null) {
         let result = checkWord(enteredWord, word)
         if (result.result) { // when the guess is right
             let i = $("#nextTile").val() - 1
-            let stopat = i - 5
+            let stopat = i - 4
             audioFiles = []
             for (; i >= stopat; i--) {
                 $(`#tile${i}`).addClass("right")
