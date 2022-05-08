@@ -173,7 +173,8 @@ function everything(keyPressed, keyCode, event = null) {
                                 let wordArray = word.split("");
                                 audioFiles.push("messages/sorry")
                                 wordArray.forEach((i) => {
-                                    audioFiles.push(`letters/${i.toLowerCase()}.m4a`)
+                                    audioFiles.push(`letters/${i.toLowerCase()}`)
+                                    console.log(`letters/${i.toLowerCase()}`)
                                 })
                                 play(0, audioFiles)
                             }, 16000)
