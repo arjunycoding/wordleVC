@@ -98,8 +98,12 @@ function everything(keyPressed, keyCode, event = null) {
             setTimeout(() => {
                 $("input").attr("disabled", "disabled")
                 $('#modal').click()
+                // $(".modal-body").html(
+                //     `You Got It!<br> The word was <b>${word.toUpperCase()}</b><br> You earned ${pointCount}/${totalPoints} Points <br>Your attempts: <br> ${displayText}`
+                // )
+                word = word.toUpperCase()
                 $(".modal-body").html(
-                    `You Got It!<br> The word was ${word}<br> You earned ${pointCount}/${totalPoints} Points <br>Here is your attempt: <br> ${displayText}`
+                    `<p class="result-heading">Points:<p><p id="pointCount">${pointCount}/${totalPoints}</p><hr><p class="result-heading">Word:<p> <br><span class="wordLetter">${word[0]}</span><span class="wordLetter">${word[1]}</span><span class="wordLetter">${word[2]}</span><span class="wordLetter">${word[3]}</span><span class="wordLetter">${word[4]}</span><hr><p class="result-heading">Attempt/s: <p> ${displayText}`
                 )
             }, 3000)
         } else { // when the guess is wrong
@@ -164,7 +168,7 @@ function everything(keyPressed, keyCode, event = null) {
 
                         if (nextTile == "#tile31") {
                             setTimeout(() => {
-                                $(".alert-primary").fadeIn(1500).text("You did not get the word 😟. The word was " + word)
+                                $(".alert-primary").fadeIn(1500).html(`You did not get the word 😟. The word was: <b>${word.toUpperCase()}</b>`)
                                 audioFiles = []
                                 let wordArray = word.split("");
                                 audioFiles.push("messages/sorry")

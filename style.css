@@ -22,6 +22,7 @@ body {
   text-align: center;
   display: inline;
   margin: 45%;
+  /* font-size: 50px; */
 }
 
 #hiddenTile {
@@ -173,4 +174,22 @@ input:focus {
   width: 100%;
   height: 100%;
   border: 5px solid red;
+}
+
+#result-body {
+  text-align: center;
+}
+
+#pointCount {
+  font-size: 25px;
+}
+
+.wordLetter {
+  border: 2px solid black;
+  margin: 1px;
+  padding: 10px;
+  font-size: 25px;
+}
+.result-heading {
+  font-size: 35px;
 }
