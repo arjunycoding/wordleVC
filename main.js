@@ -103,7 +103,7 @@ function everything(keyPressed, keyCode, event = null) {
                 // )
                 word = word.toUpperCase()
                 $(".modal-body").html(
-                    `<p class="result-heading">Points:<p><p id="pointCount">${pointCount}/${totalPoints}</p><hr><p class="result-heading">Word:<p> <br><span class="wordLetter">${word[0]}</span><span class="wordLetter">${word[1]}</span><span class="wordLetter">${word[2]}</span><span class="wordLetter">${word[3]}</span><span class="wordLetter">${word[4]}</span><hr><p class="result-heading">Attempt/s: <p> ${displayText}`
+                    `<p class="result-heading">Points:<p><p id="pointCount">${pointCount}/${totalPoints}</p><hr><p class="result-heading">Word:<p> <br><span class="wordLetter">${word[0]}</span><span class="wordLetter">${word[1]}</span><span class="wordLetter">${word[2]}</span><span class="wordLetter">${word[3]}</span><span class="wordLetter">${word[4]}</span><br><br><hr><p class="result-heading">Attempt/s: <p> ${displayText}`
                 )
             }, 3000)
         } else { // when the guess is wrong
@@ -181,7 +181,6 @@ function everything(keyPressed, keyCode, event = null) {
                         }
                         pointCount -= 10
 
-                        $("#ponitCount").html(pointCount)
                     } else {
                         let i = $("#nextTile").val() - 1
                         let stopat = i - 4
